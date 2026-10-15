@@ -10,9 +10,13 @@ id, user_id, action, owner_name, due_date, dependency, priority, source_sentence
 RLS: cada usuario lee, crea, edita y borra solo filas con `auth.uid() = user_id`. Los valores de `priority` y `status` se validan con `check` en la base.
 
 ## IA
-Edge Function `extract-commitments` (iteración 2). Recibe notas, título y fecha; llama a OpenRouter con `OPENROUTER_API_KEY` guardada como secreto de Supabase; devuelve ítems estructurados. Exige un usuario con sesión. La clave nunca llega al navegador.
+Edge Function `extract-commitments` (`supabase/functions/extract-commitments/index.ts`, JavaScript sin tipos).
+- Comprueba la sesión llamando a `/auth/v1/user` con el token del usuario; sin sesión responde 401.
+- Llama a OpenRouter con los secretos `OPENROUTER_API_KEY` y `OPENROUTER_MODEL` (por defecto `anthropic/claude-sonnet-4.5`), con una herramienta para obtener salida estructurada.
+- Sanea la respuesta (tipos, rangos, valores permitidos) y devuelve `{ items, model, ms }`. Errores de la IA devuelven `aiUnavailable: true` para ofrecer la carga manual.
+- No escribe en la base: guardar es decisión de la persona y pasa por RLS desde el frontend.
 
-## Reglas deterministas (src/lib/rules.js)
+## Reglas deterministas (src/lib/rules.js, se ejecutan en el navegador)
 Normalización de texto, verificación de frase de origen, validación de fechas, duplicados (Jaccard ≥ 0,6 + mismo responsable), umbral de confianza 0,8, máquina de estados y exigencia de evidencia.
 
 ## Frontend
