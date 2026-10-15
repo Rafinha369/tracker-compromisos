@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CheckCheck, FilePlus2, PencilLine } from "lucide-react";
 import { usePageTitle } from "../hooks/usePageTitle";
 import { useReview } from "../hooks/useReview";
-import { todayISO } from "../lib/text";
+import { formatDecimal, todayISO } from "../lib/text";
 import NotesForm from "../components/NotesForm";
 import NotesSheet from "../components/NotesSheet";
 import ReviewQueue from "../components/ReviewQueue";
@@ -56,7 +56,7 @@ export default function ReviewPage() {
             <div className="mb-8 flex flex-wrap items-center gap-2">
               <p className="mr-auto text-base">
                 <strong>{rows.length} {rows.length === 1 ? "ítem" : "ítems"}</strong>
-                {meta && <span className="text-ink-muted"> detectados en {(meta.ms / 1000).toFixed(1)} s</span>}
+                {meta && <span className="text-ink-muted"> detectados en {formatDecimal(meta.ms / 1000)} s</span>}
               </p>
               {readyCount > 0 && (
                 <button onClick={() => review.approveReady(input.title)}

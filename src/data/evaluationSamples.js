@@ -5,6 +5,7 @@ export const EVALUATION_SAMPLES = [
     id: "reunion-cierre",
     title: "Reunión cierre de nómina octubre",
     meetingDate: "2026-10-12",
+    traps: "Una decisión (corte el día 20), una idea (Power Automate), una pregunta (finiquitos) y dos compromisos sin fecha concreta.",
     notes: `Reunión cierre de nómina octubre — lunes 12/10/2026
 Asistentes: Carla Muñoz (Payroll), Diego Rojas (HRIS), Valentina Soto (Finanzas), Tomás Pérez (TI)
 
@@ -27,6 +28,7 @@ Carla preparará el checklist de cierre para el próximo comité.`,
     id: "hilo-ausentismo",
     title: "Hilo #rrhh-reportes — ausentismo",
     meetingDate: "2026-10-12",
+    traps: "Un recordatorio, una idea (filtro por turno), una pregunta (licencia médica), una decisión y un pedido sin responsable (“alguien de TI”).",
     notes: `Canal #rrhh-reportes — 12/10/2026
 [09:12] Andrea Fuentes: Les recuerdo que el reporte de ausentismo se publica el 31.
 [09:15] Matías Lagos: Ok, yo actualizo el dashboard de ausentismo con los datos de octubre antes del 30.
@@ -45,6 +47,7 @@ Carla preparará el checklist de cierre para el próximo comité.`,
     id: "correo-auditoria",
     title: "Correo: pendientes auditoría de beneficios",
     meetingDate: "2026-10-12",
+    traps: "Una decisión (seguro complementario), una idea (apoyo externo), “esta semana” como fecha y un pedido escrito como pregunta.",
     notes: `De: Rodrigo Díaz
 Para: Fernanda Castro; Sebastián Vera
 Fecha: lunes 12 de octubre de 2026

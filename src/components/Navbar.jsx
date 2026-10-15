@@ -8,6 +8,7 @@ import BrandMark from "./BrandMark";
 const LINKS = [
   { to: "/", label: "Extraer y revisar" },
   { to: "/tracker", label: "Tracker" },
+  { to: "/metricas", label: "Métricas" },
 ];
 
 export default function Navbar() {
