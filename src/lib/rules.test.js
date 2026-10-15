@@ -37,3 +37,19 @@ test("validación antes de aprobar", () => {
   assert.match(validateForApproval({ ...base, owner: "" }), /responsable/);
   assert.equal(validateForApproval(base), null);
 });
+
+import { daysBetween, isOverdue, validateTransition } from "./rules.js";
+
+test("flujo de estados y evidencia", () => {
+  assert.match(validateTransition("pendiente", "completado", "x"), /No se puede/);
+  assert.match(validateTransition("en_progreso", "completado", ""), /evidencia/);
+  assert.equal(validateTransition("en_progreso", "completado", "Archivo enviado por correo"), null);
+  assert.match(validateTransition("completado", "pendiente"), /No se puede/);
+});
+
+test("vencidos", () => {
+  assert.equal(isOverdue({ due_date: "2026-10-10", status: "pendiente" }, "2026-10-15"), true);
+  assert.equal(isOverdue({ due_date: "2026-10-10", status: "completado" }, "2026-10-15"), false);
+  assert.equal(isOverdue({ due_date: null, status: "pendiente" }, "2026-10-15"), false);
+  assert.equal(daysBetween("2026-10-10", "2026-10-15"), 5);
+});

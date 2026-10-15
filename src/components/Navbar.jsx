@@ -5,7 +5,10 @@ import { useAuth } from "../hooks/useAuth";
 import { signOut } from "../services/auth";
 import BrandMark from "./BrandMark";
 
-const LINKS = [{ to: "/", label: "Extraer y revisar" }];
+const LINKS = [
+  { to: "/", label: "Extraer y revisar" },
+  { to: "/tracker", label: "Tracker" },
+];
 
 export default function Navbar() {
   const { session } = useAuth();

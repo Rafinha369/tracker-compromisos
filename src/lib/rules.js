@@ -98,3 +98,41 @@ export function validateForApproval(item) {
   if (item.dueDate && !isValidISODate(item.dueDate)) return "La fecha no es válida.";
   return null;
 }
+
+/* ---------- Flujo de estados del tracker (la base lo hace cumplir con un trigger) ---------- */
+
+export const STATUS_LABEL = {
+  pendiente: "Pendiente",
+  en_progreso: "En progreso",
+  bloqueado: "Bloqueado",
+  completado: "Completado",
+  cancelado: "Cancelado",
+};
+
+export const TRANSITIONS = {
+  pendiente: ["en_progreso", "bloqueado", "cancelado"],
+  en_progreso: ["bloqueado", "completado", "cancelado"],
+  bloqueado: ["en_progreso", "cancelado"],
+  completado: [],
+  cancelado: [],
+};
+
+export function validateTransition(from, to, evidence) {
+  if (!TRANSITIONS[from]?.includes(to)) return `No se puede pasar de "${STATUS_LABEL[from]}" a "${STATUS_LABEL[to]}".`;
+  if (to === "completado" && (!evidence || evidence.trim().length < 5))
+    return "Para completar, describe la evidencia (qué se entregó o dónde está).";
+  return null;
+}
+
+export function isOpen(status) {
+  return status !== "completado" && status !== "cancelado";
+}
+
+export function isOverdue(commitment, today) {
+  return Boolean(commitment.due_date) && commitment.due_date < today && isOpen(commitment.status);
+}
+
+// Días entre dos fechas YYYY-MM-DD (positivo si "to" es posterior).
+export function daysBetween(from, to) {
+  return Math.round((new Date(`${to}T12:00:00Z`) - new Date(`${from}T12:00:00Z`)) / 86400000);
+}
