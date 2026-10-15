@@ -24,6 +24,11 @@ export default {
         warn: "#8A5A0E",
         bad: "#A3352E",
       },
+      // Único movimiento orquestado: el resaltador pasa sobre las frases al cargar el login
+      keyframes: {
+        sweep: { "0%": { backgroundSize: "0% 70%" }, "100%": { backgroundSize: "100% 70%" } },
+      },
+      animation: { sweep: "sweep 700ms ease-out both" },
       fontFamily: {
         display: ['"Schibsted Grotesk"', "Georgia", "serif"],
         body: ['"Public Sans"', "system-ui", "sans-serif"],
