@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NonCommitmentRow from "./NonCommitmentRow";
 import ReviewCard from "./ReviewCard";
 
@@ -23,7 +24,7 @@ export default function ReviewQueue({ rows, active, handlers }) {
       {approved > 0 && (
         <p className="border-l-4 border-ok bg-sheet px-4 py-2 text-base" role="status">
           {approved === 1 ? "1 compromiso quedó guardado." : `${approved} compromisos quedaron guardados.`}{" "}
-          <span className="text-ink-muted">El tracker llega en la próxima entrega; puedes verlos en Supabase → Table Editor.</span>
+          <Link to="/tracker" className="font-semibold text-accent underline-offset-4 hover:underline">Ver en el tracker</Link>
         </p>
       )}
       {GROUPS.map((g) => {

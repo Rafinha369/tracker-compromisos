@@ -9,6 +9,10 @@ id, user_id, action, owner_name, due_date, dependency, priority, source_sentence
 
 RLS: cada usuario lee, crea, edita y borra solo filas con `auth.uid() = user_id`. Los valores de `priority` y `status` se validan con `check` en la base.
 
+Trigger `commitments_enforce_status` (migración `002_enforce_commitment_status.sql`): antes de cada update valida la transición de estado, exige evidencia (5+ caracteres) para completar y actualiza `updated_at`. La interfaz aplica las mismas reglas para ofrecer solo cambios válidos; la base es la barrera final.
+
+Cambio de estado protegido: el update filtra por `id` y por el estado leído; si otra pestaña ya lo cambió, no se pisa y la interfaz pide recargar.
+
 ## IA
 Edge Function `extract-commitments` (`supabase/functions/extract-commitments/index.ts`, JavaScript sin tipos).
 - Comprueba la sesión llamando a `/auth/v1/user` con el token del usuario; sin sesión responde 401.
