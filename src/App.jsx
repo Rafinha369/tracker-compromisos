@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
 import ReviewPage from "./pages/ReviewPage";
 import TrackerPage from "./pages/TrackerPage";
+import MetricsPage from "./pages/MetricsPage";
 
 function PrivateLayout({ children }) {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<PrivateLayout><ReviewPage /></PrivateLayout>} />
           <Route path="/tracker" element={<PrivateLayout><TrackerPage /></PrivateLayout>} />
+          <Route path="/metricas" element={<PrivateLayout><MetricsPage /></PrivateLayout>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

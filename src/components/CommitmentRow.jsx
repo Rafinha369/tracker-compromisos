@@ -37,7 +37,7 @@ export default function CommitmentRow({ commitment: c, today, onRequestStatus, m
         <span className={`pl-6 text-sm md:pl-0 ${overdue ? "font-semibold text-bad" : "text-ink-muted"}`}>
           <span className="tabular-nums text-ink">{c.due_date ? formatShortDate(c.due_date) : ""}</span>
           {c.due_date && <br className="hidden md:block" />}
-          {c.due_date ? <span className="md:hidden"> · </span> : null}
+          {c.due_date ? <span className="md:hidden">, </span> : null}
           {dueText(c, today)}
         </span>
         <span className={`pl-6 text-sm font-semibold capitalize md:pl-0 ${PRIORITY[c.priority]}`}>{c.priority}</span>

@@ -23,6 +23,9 @@ Edge Function `extract-commitments` (`supabase/functions/extract-commitments/ind
 ## Reglas deterministas (src/lib/rules.js, se ejecutan en el navegador)
 Normalización de texto, verificación de frase de origen, validación de fechas, duplicados (Jaccard ≥ 0,6 + mismo responsable), umbral de confianza 0,8, máquina de estados y exigencia de evidencia.
 
+## Métricas
+La pantalla llama 3 veces a `extract-commitments` (una por texto de `src/data/evaluationSamples.js`) y calcula en el navegador, con `src/lib/evaluate.js`, precisión, recall, responsable y fecha correctos y compromisos falsos. Un compromiso propuesto cuenta como encontrado si su frase o acción contiene el fragmento (`anchor`) etiquetado. No guarda resultados ni crea tablas.
+
 ## Frontend
 - Rutas: /login (pública); / Extraer y revisar, /tracker, /metricas (privadas, con ProtectedRoute).
 - Sesión: AuthProvider con getSession al cargar y onAuthStateChange.

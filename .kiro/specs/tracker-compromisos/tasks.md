@@ -12,6 +12,7 @@
 - [x] 9. Pantalla Extraer y revisar
 - [x] 10. Pantalla Tracker
 - [x] 10.1 Migración 002: trigger que hace cumplir el flujo de estados y la evidencia
-- [ ] 10.2 Ejecutar la migración 002 en Supabase y verificar en la preview
-- [ ] 11. Pantalla Métricas
+- [x] 10.2 Ejecutar la migración 002 en Supabase y verificar en la preview
+- [x] 11. Pantalla Métricas
+- [ ] 11.1 Ejecutar la evaluación en la preview con OpenRouter real y anotar los resultados
 - [ ] 12. Prueba de RLS con 2 usuarios (verificada en Postgres local; falta confirmar en Supabase)

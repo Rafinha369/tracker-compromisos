@@ -18,3 +18,8 @@ export function todayISO() {
   const d = new Date();
   return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 }
+
+// Número con un decimal en formato chileno: 8,4
+export function formatDecimal(n) {
+  return n.toLocaleString("es-CL", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
